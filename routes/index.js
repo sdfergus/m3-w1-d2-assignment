@@ -10,6 +10,11 @@ router.get( '/', function ( req, res ) {
     res.render( 'form', { title: 'Registration form' } );
 } );
 
+//Route that lists all registrations on the front-end
+router.get( '/registrations', ( req, res ) => {
+    res.render( 'index', { title: 'Listing registrations' } )
+} );
+
 router.post( '/',
     [
         check( 'name' )
