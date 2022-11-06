@@ -1,5 +1,7 @@
 const express = require( 'express' );
 const mongoose = require( 'mongoose' );
+const path = require( 'path' );
+const auth = require( 'http-auth' );
 const { check, validationResult } = require( 'express-validator' );
 
 const router = express.Router();
@@ -11,13 +13,13 @@ router.get( '/', function ( req, res ) {
 } );
 
 //Route that lists all registrations on the front-end
-router.get( '/registrations', ( req, res ) => {
+router.get( '/registrations', basic.check( ( req, res ) => {
     Registration.find()
         .then( ( registrations ) => {
             res.render( 'index', { title: 'Listing registrations', registrations } )
         } )
         .catch( () => { res.send( 'Sorry! Something went wrong.' ); } );
-} );
+} ) );
 
 router.post( '/',
     [
