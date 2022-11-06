@@ -12,7 +12,11 @@ router.get( '/', function ( req, res ) {
 
 //Route that lists all registrations on the front-end
 router.get( '/registrations', ( req, res ) => {
-    res.render( 'index', { title: 'Listing registrations' } )
+    Registration.find()
+        .then( ( registrations ) => {
+            res.render( 'index', { title: 'Listing registrations', registrations } )
+        } )
+        .catch( () => { res.send( 'Sorry! Something went wrong.' ); } );
 } );
 
 router.post( '/',
