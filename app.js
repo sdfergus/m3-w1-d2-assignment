@@ -10,5 +10,6 @@ app.set( 'view engine', 'pug' );
 
 app.use( bodyParser.urlencoded( { extended: true } ) );
 app.use( '/', routes );
+app.use( express.static( 'public' ) );  //used to load img/JS/CSS files saved in the public directory
 
 module.exports = app;
